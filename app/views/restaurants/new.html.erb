@@ -1,0 +1,25 @@
+
+<h2>Add a restaurant !</h2>
+<ul class="list-group">
+  <%= form_for @restaurant do |f| %>
+    <li>
+      <%= f.label :name, "What's the name of your restaurant ?" %>
+      <%= f.text_field :name %>
+    </li>
+    <li>
+      <%= f.label :address, "Address" %>
+      <%= f.text_field :address %>
+    </li>
+    <li>
+      <%= f.label :phone_number, "Phone number" %>
+      <%= f.text_field :phone_number %>
+    </li>
+    <li>
+      <%= f.label :category, "Category" %>
+      <%= f.text_field :category %>
+    </li>
+
+    <hr>
+    <%= f.submit "add a review", class: "btn btn-primary" %>
+  <% end %>
+</ul>

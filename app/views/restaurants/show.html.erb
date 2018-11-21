@@ -1,0 +1,53 @@
+<h1> <%= @restaurant.name %></h1>
+
+<div class="table-responsive">
+  <table  class="table">
+    <thead>
+      <tr>
+        <th colspan="6">Details</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Address</td>
+        <td><%= @restaurant.address %></td>
+      </tr>
+      <tr>
+        <td>Phone Number</td>
+        <td><%= @restaurant.phone_number %></td>
+      </tr>
+      <tr>
+        <td>Category</td>
+        <td><%= @restaurant.category.upcase %> </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<hr>
+<h2>Reviews</h2>
+<ul class="list-group">
+  <% @restaurant.reviews.each do |review| %>
+  <li class="list-group-item">
+    <span class="star">
+     <% review.rating.times do %>
+     <i class="fa fa-star" aria-hidden="true"></i>
+     <% end %>
+     <% (5 - review.rating).times do %>
+     <i class="fa fa-star-o" aria-hidden="true"></i>
+     <% end %>
+    </span>
+    <%= review.content %>
+  </li>
+  <% end %>
+</ul>
+<hr>
+<h2>Add a review</h2>
+<%= simple_form_for [@restaurant, @review] do |f| %>
+  <%= f.input :content %>
+  <%= f.input :rating, collection: (0...5) %>
+  <%= f.submit "add a review", class: "btn btn-primary" %>
+<% end %>
+
+
+<hr>
+<%= link_to "Back to list", root_path, class: "navbar-wagon-item navbar-wagon-button btn" %>
